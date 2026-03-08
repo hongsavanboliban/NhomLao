@@ -14,43 +14,115 @@
   <a href="minigame.html">Minigame</a>
 </nav>
 
+
+
+
 <!-- TOP DESTINATIONS -->
 <section id="top-sites">
   <h2>Top Điểm Đến Phải Đi</h2>
-  <input type="text" id="searchInput" placeholder="Tìm địa điểm...">
-<button onclick="searchPlace()">Tìm</button>
-  <div class="slider-container">
+  <div class="search-box">
+  <input type="text" id="searchInput" placeholder="Tìm địa điểm..." onkeyup="showSuggestions()">
+  <button onclick="searchPlace()">Tìm</button>
+  <div id="suggestions"></div>
+  </div>
 
     <button class="slide-btn left" onclick="slideLeft()">❮</button>
 
     <div class="slider" id="slider">
-
-        <div class="card">
-            <img src="https://media.gettyimages.com/id/939742052/photo/luang-prabang-temple-in-the-heart-of-the-city.jpg?s=612x612&w=0&k=20&c=QAYxehnVn4A5RzyPO0WabntlEARFaA7vmK3xvERHP_Y=">
-            <p>Luang Prabang</p>
+        <div class="place-card" onclick="openModal('Da Nang','https://images.pexels.com/photos/20539372/pexels-photo-20539372.jpeg','Đà Nẵng là thành phố trực thuộc trung ương lớn nhất miền Trung Việt Nam, nổi tiếng là điểm đến du lịch sạch, hiện đại với danh xưng -thành phố đáng sống- Nơi đây nổi bật với bãi biển Mỹ Khê, sông Hàn, các cây cầu độc đáo, ẩm thực phong phú và vị trí trung tâm gần Hội An, Huế.')">
+            <img src="https://images.pexels.com/photos/20539372/pexels-photo-20539372.jpeg">
+            <h3>Da Nang</h3>
         </div>
 
-        <div class="card">
+        <div class="place-card" onclick="openModal('Ha Long Bay','https://res.klook.com/image/upload/w_750,h_469,c_fill,q_85/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/qmgtdjekctlyucr8itqw.jpg','Du lịch Vịnh Hạ Long (Quảng Ninh) là trải nghiệm di sản thiên nhiên thế giới nổi tiếng với hàng nghìn đảo đá vôi, hang động kỳ thú, du thuyền ngủ đêm, và các điểm check-in hấp dẫn như Sun Worldđảo Tuần Châu, bảo tàng Quảng Ninh.')">
             <img src="https://res.klook.com/image/upload/w_750,h_469,c_fill,q_85/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/qmgtdjekctlyucr8itqw.jpg">
-            <p>Ha Long Bay</p>
+            <h3>Ha Long Bay</h3>
         </div>
 
-        <div class="card">
-            <img src="img/hoi-an.jpg">
-            <p>Hoi An</p>
+        <div class="place-card" onclick="openModal('HaNoi','https://media.gettyimages.com/id/953588770/photo/turtle-lake-temple-hanoi-vietnam.jpg?s=612x612&w=0&k=20&c=Xk2eXdEWzRWFvr3hZKMU8ZmguSHagQcKzYtUEl4mqZQ=','Hà Nội, thủ đô nghìn năm văn hiến của Việt Nam, được vua Lý Thái Tổ chọn làm kinh đô (Thăng Long) vào năm 1010. Thành phố có vị trí chiến lược, được bao quanh bởi sông Hồng và sông Thanh Quyết. Hà Nội đóng vai trò là trung tâm chính trị, văn hóa và kinh tế quan trọng, với nhiều di tích lịch sử lâu đời.')">
+            <img src="https://media.gettyimages.com/id/953588770/photo/turtle-lake-temple-hanoi-vietnam.jpg?s=612x612&w=0&k=20&c=Xk2eXdEWzRWFvr3hZKMU8ZmguSHagQcKzYtUEl4mqZQ=">
+            <h3>HaNoi</h3>
         </div>
 
-        <div class="card">
-            <img src="img/hanoi.jpg">
-            <p>Ha Noi</p>
+        <div class="place-card" onclick="openModal('Hoi An','https://images.pexels.com/photos/5746254/pexels-photo-5746254.jpeg','Phố cổ Hội An (Quảng Nam) là di sản văn hóa thế giới được UNESCO công nhận, nằm bên hạ lưu sông Thu Bồn, cách Đà Nẵng khoảng 30km. Nổi tiếng với kiến trúc hoài cổ, đèn lồng rực rỡ và văn hóa giao thoa Việt-Nhật-Hoa, đây là điểm đến bình lặng, độc đáo với các điểm tham quan như Chùa Cầu, nhà cổ Tấn Ký, và rừng dừa Bảy Mẫu.')">
+            <img src="https://images.pexels.com/photos/5746254/pexels-photo-5746254.jpeg">
+            <h3>Hoi An</h3>
         </div>
 
+        <div class="place-card" onclick="openModal('Luang Prabang','https://media.gettyimages.com/id/939742052/photo/luang-prabang-temple-in-the-heart-of-the-city.jpg?s=612x612&w=0&k=20&c=QAYxehnVn4A5RzyPO0WabntlEARFaA7vmK3xvERHP_Y=','Luang Prabang cổ kính hài hòa giữa văn hóa Phật giáo, kiến trúc Pháp cổ điển và cảnh quan thiên nhiên tuyệt đẹp. Nơi đây từng là cố đô của Vương quốc Lane Xang và đã được UNESCO công nhận là Di sản Thế giới từ năm 1995. Du lịch Luang Prabang nổi bật với nhiều điểm tham quan tiêu biểu. Chùa Wat Xieng Thong hay Wat Mai thu hút du khách bởi nghệ thuật chạm khắc và trang trí. Buổi sớm, khung cảnh các nhà sư khất thực trong sắc áo cà sa cam là trải nghiệm văn hóa độc đáo.')">
+            <img src="https://media.gettyimages.com/id/939742052/photo/luang-prabang-temple-in-the-heart-of-the-city.jpg?s=612x612&w=0&k=20&c=QAYxehnVn4A5RzyPO0WabntlEARFaA7vmK3xvERHP_Y=">
+            <h3>Luang Prabang</h3>
+        </div>
+
+        <div class="place-card" onclick="openModal('SaiGon','https://images.pexels.com/photos/5435083/pexels-photo-5435083.jpeg','Sài Gòn (hiện nay là Thành phố Hồ Chí Minh) là trung tâm kinh tế, tài chính và văn hóa lớn nhất Việt Nam, tọa lạc tại miền Đông Nam Bộ. Được mệnh danh là -Hòn ngọc Viễn Đông-, thành phố là sự pha trộn sôi động giữa kiến trúc cổ kính, văn hóa đa dạng và nhịp sống hiện đại, nổi tiếng với chợ Bến Thành, ẩm thực đường phố và các công trình kiến trúc thời Pháp thuộc.')">
+            <img src="https://images.pexels.com/photos/5435083/pexels-photo-5435083.jpeg">
+            <h3>SaiGon</h3>
+        </div>
+
+        <div class="place-card" onclick="openModal('Vientiane','https://media.gettyimages.com/id/1179726275/photo/an-aerial-view-of-that-luang-vientiane-laos.jpg?s=612x612&w=0&k=20&c=8L18Luq6S4HUq3eaAIGDR0cAVQWOK5g8zmopF2y_FbE=','Viêng Chăn (Vientiane) là thủ đô và thành phố lớn nhất của Lào, nằm bên bờ sông Mê Kông gần biên giới Thái Lan. Đây là trung tâm hành chính và kinh tế, nổi tiếng với nhịp sống bình yên, các công trình Phật giáo cổ kính như Thạt Luổng (Pha That Luang), Khải Hoàn Môn Patuxai và kiến trúc thuộc địa Pháp.')">
+            <img src="https://media.gettyimages.com/id/1179726275/photo/an-aerial-view-of-that-luang-vientiane-laos.jpg?s=612x612&w=0&k=20&c=8L18Luq6S4HUq3eaAIGDR0cAVQWOK5g8zmopF2y_FbE=">
+            <h3>Vientiane</h3>
+        </div>
     </div>
 
     <button class="slide-btn right" onclick="slideRight()">❯</button>
 
 </div>
 </section>
+
+<div id="placeModal" class="modal">
+
+<div class="modal-content">
+
+<span class="close" onclick="closeModal()">✖</span>
+
+<img id="modalImg">
+
+<h2 id="modalTitle"></h2>
+
+<div class="rating">
+
+<span onclick="rate(1)"> ★</span>
+<span onclick="rate(2)"> ★</span>
+<span onclick="rate(3)"> ★</span>
+<span onclick="rate(4)"> ★</span>
+<span onclick="rate(5)"> ★</span>
+
+</div>
+
+<p id="ratingText"></p>
+
+<p id="modalText"></p>
+
+<div class="modal-buttons">
+
+<button onclick="likePlace()">❤️ Like</button>
+
+<button onclick="showBestTime()">📅 Best Time</button>
+
+<button onclick="copyLink()">🔗 Copy Link</button>
+
+<button onclick="openMap()">🗺 Map</button>
+
+</div>
+
+<p id="extraInfo"></p>
+<div class="comment-box">
+
+<h4>Visitor Comment</h4>
+
+<input type="text" id="commentInput" placeholder="Write a comment...">
+
+<button onclick="addComment()">Send</button>
+
+<ul id="commentList"></ul>
+
+</div>
+</div>
+
+</div>
+
+
 
 <script>
 function slideLeft(){
@@ -68,10 +140,230 @@ function slideRight(){
 }
 </script>
 
+<script>
+
+function openModal(title,img,text){
+
+document.getElementById("placeModal").style.display="flex";
+
+document.getElementById("modalTitle").innerText=title;
+
+document.getElementById("modalImg").src=img;
+
+document.getElementById("modalText").innerText=text;
+
+
+/* reset ดาวทุกครั้งที่เปิด */
+let stars=document.querySelectorAll(".rating span");
+stars.forEach(star=>{
+star.style.color="lightgray";
+});
+}
+function closeModal(){
+
+document.getElementById("placeModal").style.display="none";
+
+}
+
+</script>
+
+<script>
+
+let places=[
+"Luang Prabang",
+"Ha Long Bay",
+"Hoi An",
+"HaNoi",
+"Vientiane",
+"Da Nang",
+"SaiGon"
+];
+
+function showSuggestions(){
+
+let input=document.getElementById("searchInput").value.toLowerCase();
+let suggestionBox=document.getElementById("suggestions");
+
+suggestionBox.innerHTML="";
+
+if(input===""){
+suggestionBox.style.display="none";
+return;
+}
+
+places.forEach(function(place){
+
+if(place.toLowerCase().startsWith(input)){
+
+let div=document.createElement("div");
+div.classList.add("suggestion-item");
+
+div.innerText=place;
+
+div.onclick=function(){
+document.getElementById("searchInput").value=place;
+suggestionBox.style.display="none";
+};
+
+suggestionBox.appendChild(div);
+
+}
+
+});
+
+suggestionBox.style.display="block";
+
+}
+
+function searchPlace(){
+
+let input=document.getElementById("searchInput").value.toLowerCase();
+
+let places=document.getElementsByClassName("place-card");
+
+for(let i=0;i<places.length;i++){
+
+let text=places[i].innerText.toLowerCase();
+
+if(text.includes(input)){
+places[i].scrollIntoView({behavior:"smooth"});
+break;
+}
+
+}
+
+}
+
+let likeCount = 0;
+
+function likePlace(){
+
+likeCount++;
+
+document.getElementById("extraInfo").innerText =
+"❤️ Likes: " + likeCount;
+
+}
+
+function showBestTime(){
+
+document.getElementById("extraInfo").innerText =
+"📅 Best time: March – May, September – November";
+
+}
+
+function openMap(){
+
+let place = document.getElementById("modalTitle").innerText;
+
+window.open("https://www.google.com/maps/search/" + place);
+
+}
+
+function rate(stars){
+
+let allStars = document.querySelectorAll(".rating span");
+
+allStars.forEach((star,index)=>{
+
+if(index < stars){
+star.style.color = "gold";
+}else{
+star.style.color = "lightgray";
+}
+
+});
+
+}
+function copyLink(){
+
+let place=document.getElementById("modalTitle").innerText;
+
+let link=window.location.href + "#" + place;
+
+navigator.clipboard.writeText(link);
+
+document.getElementById("extraInfo").innerText =
+"🔗 Link copied!";
+
+}
+let comments = JSON.parse(localStorage.getItem("comments")) || [];
+
+function saveComments(){
+localStorage.setItem("comments", JSON.stringify(comments));
+}
+
+function renderComments(){
+
+let list=document.getElementById("commentList");
+list.innerHTML="";
+
+comments.forEach((c,index)=>{
+
+let li=document.createElement("li");
+li.className="comment-item";
+
+li.innerHTML=`
+<span>${c.text}</span>
+
+<div class="comment-actions">
+<span onclick="likeComment(${index})">❤️ ${c.likes}</span>
+<span onclick="deleteComment(${index})">🗑</span>
+</div>
+`;
+
+list.appendChild(li);
+
+});
+
+}
+
+function addComment(){
+
+let input=document.getElementById("commentInput");
+
+let text=input.value.trim();
+
+if(text==="") return;
+
+comments.push({
+text:text,
+likes:0
+});
+
+input.value="";
+
+saveComments();
+renderComments();
+
+}
+
+function deleteComment(index){
+
+comments.splice(index,1);
+
+saveComments();
+renderComments();
+
+}
+
+function likeComment(index){
+
+comments[index].likes++;
+
+saveComments();
+renderComments();
+
+}
+
+renderComments();
+</script>
+
+
+
+
 
 </body>
-
-
 
 <footer>
   <p>© 2026 Lào – Việt Nam Tourism</p>
