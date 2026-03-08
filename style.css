@@ -512,3 +512,36 @@ font-size:18px;
 }
 
 /* Minigame Back x Bob*/
+body{
+font-family:Arial;
+text-align:center;
+background:#2ecc71;
+}
+
+.goal{
+width:300px;
+margin:20px auto;
+display:grid;
+grid-template-columns:repeat(3,100px);
+gap:5px;
+}
+
+.cell{
+height:100px;
+background:white;
+border:2px solid black;
+cursor:pointer;
+}
+
+.target{
+background:red;
+}
+
+.quiz{
+display:none;
+}
+
+img{
+width:300px;
+margin-top:20px;
+}
