@@ -28,10 +28,13 @@
         <li><a href="tourism.html">Du lịch</a></li>
         <li><a href="food.html">Ẩm thực</a></li>
         <li><a href="culture.html">Văn hóa</a></li>
+        <li><a href="minigame.html">Minigame</a></li>
       </ul>
     </div>
   </div>  
 </nav>
+
+<p id="time"></p>
 
 <section class="content" data-aos="fade-up">
   <h2>Giới thiệu về quan hệ Lào – Việt Nam</h2>
@@ -74,7 +77,11 @@
   </div>
 </section>
 
-
+<img src="image.jpg" class="place-img" onclick="openImg(this)">
+<div id="imgModal" class="modal">
+  <span onclick="closeImg()">×</span>
+  <img id="modalImg">
+</div>
 
 <section class="timeline-section">
   <h2>Lịch sử quan hệ</h2>
@@ -125,6 +132,60 @@ AOS.init({
   duration: 900,
   once: true
 });
+</script>
+
+<script>
+function searchPlace() {
+  let input = document.getElementById("searchInput").value.toLowerCase();
+  let cards = document.querySelectorAll(".card");
+
+  cards.forEach(card => {
+    let text = card.innerText.toLowerCase();
+
+    if (text.includes(input)) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
+}
+</script>
+
+<script>
+function rate(star){
+  let stars = star.parentNode.children;
+  for(let i=0;i<stars.length;i++){
+    stars[i].style.opacity="0.3";
+  }
+
+  for(let i=0;i<=Array.from(stars).indexOf(star);i++){
+    stars[i].style.opacity="1";
+  }
+}
+</script>
+
+<script>
+function openImg(img){
+document.getElementById("imgModal").style.display="block";
+document.getElementById("modalImg").src=img.src;
+}
+
+function closeImg(){
+document.getElementById("imgModal").style.display="none";
+}
+</script>
+
+<script>
+function darkMode(){
+document.body.classList.toggle("dark");
+}
+</script>
+
+<script>
+setInterval(()=>{
+let now=new Date();
+document.getElementById("time").innerHTML=now.toLocaleString();
+},1000);
 </script>
 
 
