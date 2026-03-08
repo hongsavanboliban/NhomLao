@@ -14,22 +14,149 @@
   <a href="minigame.html">Minigame</a>
 </nav>
 
-<section id="culture">
-  <h2>Văn Hóa & Truyền Thống</h2>
-  <div class="grid">
-    <div class="card">
-      <img src="https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2022/8/18/1082280/Ao-Dai2.jpg" alt="Vietnam Culture">
-      <h3>Ao Dai (áo dài)</h3>
-      <p>Áo dài là trang phục truyền thống của Việt Nam, biểu tượng cho vẻ đẹp thanh tao, duyên dáng và là niềm tự hào văn hóa của dân tộc. Trang phục này bao gồm một chiếc áo dài xẻ tà hai bên mặc cùng quần dài ống rộng, được sử dụng phổ biến trong các dịp lễ Tết, cưới hỏi và sự kiện quan trọng.</p>
-    </div>
-    <div class="card">
-      <img src="https://m.yodycdn.com/blog/trang-phuc-truyen-thong-thai-lan-17.jpg" alt="Lao Culture">
-      <h3>Sin (váy Lào)</h3>
-      <p>Váy Sinh (hay Phaa Sinh) là trang phục truyền thống đặc trưng nhất của phụ nữ Lào, biểu tượng cho vẻ đẹp dịu dàng, sự khéo léo và bản sắc văn hóa của quốc gia này.</p>
-    </div>
-  </div>
+<section id="top-sites">
+  <h2>Trang Phục truyền thống</h2>
+
+    <div class="slider" id="slider">
+        <div class="place-card" onclick="openModal('Da Nang','https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2022/8/18/1082280/Ao-Dai2.jpg','Áo dài là trang phục truyền thống của Việt Nam, biểu tượng cho vẻ đẹp thanh tao, duyên dáng và là niềm tự hào văn hóa của dân tộc. Trang phục này bao gồm một chiếc áo dài xẻ tà hai bên mặc cùng quần dài ống rộng, được sử dụng phổ biến trong các dịp lễ Tết, cưới hỏi và sự kiện quan trọng.')">
+            <img src="https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2022/8/18/1082280/Ao-Dai2.jpg">
+            <h3>Ao Dai</h3>
+        </div>
+
+        <div class="place-card" onclick="openModal('Ha Long Bay','https://kienthucnganhdulich.edu.vn/wp-content/uploads/2024/07/kieu-trang-phuc-truyen-thong-Lao.jpg','Váy Sinh (hay Phaa Sinh) là trang phục truyền thống đặc trưng nhất của phụ nữ Lào, biểu tượng cho vẻ đẹp dịu dàng, sự khéo léo và bản sắc văn hóa của quốc gia này.')">
+            <img src="https://kienthucnganhdulich.edu.vn/wp-content/uploads/2024/07/kieu-trang-phuc-truyen-thong-Lao.jpg">
+            <h3>Sin (váy Lào)</h3>
+        </div>
+
+    <button class="slide-btn right" onclick="slideRight()">❯</button>
+
+</div>
 </section>
 
+<div id="placeModal" class="modal">
+
+<div class="modal-content">
+
+<span class="close" onclick="closeModal()">✖</span>
+
+<img id="modalImg">
+
+<h2 id="modalTitle"></h2>
+
+<p id="modalText"></p>
+
+</div>
+
+</div>
+
+
+
+<script>
+function slideLeft(){
+    document.getElementById("slider").scrollBy({
+        left: -320,
+        behavior: "smooth"
+    });
+}
+
+function slideRight(){
+    document.getElementById("slider").scrollBy({
+        left: 320,
+        behavior: "smooth"
+    });
+}
+</script>
+
+<script>
+
+function openModal(title,img,text){
+
+document.getElementById("placeModal").style.display="flex";
+
+document.getElementById("modalTitle").innerText=title;
+
+document.getElementById("modalImg").src=img;
+
+document.getElementById("modalText").innerText=text;
+
+}
+
+function closeModal(){
+
+document.getElementById("placeModal").style.display="none";
+
+}
+
+</script>
+
+<script>
+
+let places=[
+"Luang Prabang",
+"Ha Long Bay",
+"Hoi An",
+"HaNoi",
+"Vientiane",
+"Da Nang",
+"SaiGon"
+];
+
+function showSuggestions(){
+
+let input=document.getElementById("searchInput").value.toLowerCase();
+let suggestionBox=document.getElementById("suggestions");
+
+suggestionBox.innerHTML="";
+
+if(input===""){
+suggestionBox.style.display="none";
+return;
+}
+
+places.forEach(function(place){
+
+if(place.toLowerCase().startsWith(input)){
+
+let div=document.createElement("div");
+div.classList.add("suggestion-item");
+
+div.innerText=place;
+
+div.onclick=function(){
+document.getElementById("searchInput").value=place;
+suggestionBox.style.display="none";
+};
+
+suggestionBox.appendChild(div);
+
+}
+
+});
+
+suggestionBox.style.display="block";
+
+}
+
+function searchPlace(){
+
+let input=document.getElementById("searchInput").value.toLowerCase();
+
+let places=document.getElementsByClassName("place-card");
+
+for(let i=0;i<places.length;i++){
+
+let text=places[i].innerText.toLowerCase();
+
+if(text.includes(input)){
+places[i].scrollIntoView({behavior:"smooth"});
+break;
+}
+
+}
+
+}
+
+</script>
 <footer>
   <p>© 2026 Lào – Việt Nam Culture</p>
 </footer>
