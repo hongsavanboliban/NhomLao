@@ -512,11 +512,6 @@ font-size:18px;
 }
 
 /* Minigame Back x Bob*/
-body{
-font-family:Arial;
-text-align:center;
-background:#2ecc71;
-}
 
 .goal{
 width:300px;
@@ -545,3 +540,4 @@ img{
 width:300px;
 margin-top:20px;
 }
+
