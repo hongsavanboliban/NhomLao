@@ -16,39 +16,24 @@
 
 <div class="game-container">
 
-<h1>🎮 Guess the Word</h1>
-<p class="game-text">Look at the picture and guess the word</p>
+<h1>🎮 Doán địa điểm</h1>
 
-<div class="image-box">
-<img src="images/pho.jpg">
-</div>
+<img id="gameImg" src="images/HoGuom.jpg">
 
-<div class="answer-box">
-<input type="text" id="answer" placeholder="Type your answer...">
+<p id="question">Nơi này ở đâu?</p>
+
+<input type="text" id="answer" placeholder="Your answer">
+
 <button onclick="checkAnswer()">Submit</button>
-</div>
 
 <p id="result"></p>
 
+<p id="score">Score: 0</p>
+
+<audio id="correctSound" src="sounds/correct.mp3"></audio>
+<audio id="wrongSound" src="sounds/Wrong.mp3"></audio>
+<audio id="clapSound" src="sounds/clap.mp3"></audio>
 </div>
-
-<h1>⚽ Football Guess Place</h1>
-<p>Score: <span id="score">0</span></p>
-
-<div class="goal" id="goal"></div>
-
-<div id="quiz" class="quiz">
-<h2>ทายว่าสถานที่นี้คืออะไร?</h2>
-
-<img id="https://share.google/lOajTLpovONPvpfq0">
-
-<br><br>
-
-<input id="answer" placeholder="พิมพ์คำตอบ">
-<button onclick="checkAnswer()">ตอบ</button>
-
-</div>
-<script src="script.js"></script>
 
 
 
@@ -56,126 +41,64 @@
 
 <script>
 
-let correct="kuy";
+let questions = [
+
+{img:"images/HoGuom.jpg", answer:"hà nội"},
+{img:"images/Danang.jpg", answer:"đà nẵng"},
+{img:"images/VC.jpg", answer:"viêng chăn"},
+{img:"images/SG.jpg", answer:"sài gòn"},
+{img:"images/CDC.jpg", answer:"cánh đồng chum"},
+{img:"images/HN80.jpg", answer:"hữu nghị 80"}
+
+];
+
+let current = 0;
+let score = 0;
 
 function checkAnswer(){
 
-let user=document.getElementById("answer").value.toLowerCase();
+let user = document.getElementById("answer").value.toLowerCase();
 
-if(user===correct){
+if(user === questions[current].answer){
 
-document.getElementById("result").innerText="✅ Correct! This is Pho";
+document.getElementById("result").innerHTML="✅ Correct!";
+document.getElementById("correctSound").play();
+score++;
 
 }else{
 
-document.getElementById("result").innerText="❌ Try again";
+document.getElementById("result").innerHTML="❌ Wrong!";
+document.getElementById("wrongSound").play();
 
 }
+
+document.getElementById("score").innerHTML="Score: " + score;
+
+nextQuestion();
+
+}
+
+function nextQuestion(){
+
+current++;
+
+if(current >= questions.length){
+
+document.getElementById("result").innerHTML="🎉 Game Finished!";
+document.getElementById("clapSound").play();
+
+return;
+
+}
+
+document.getElementById("gameImg").src = questions[current].img;
+
+document.getElementById("answer").value="";
 
 }
 
 </script>
 
-
-
-<script>
-let score = 0
-let targetIndex
-
-const places = [
-
-{
-name:"Eiffel Tower",
-img:"https://upload.wikimedia.org/wikipedia/commons/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg"
-},
-
-{
-name:"Great Wall",
-img:"https://upload.wikimedia.org/wikipedia/commons/1/10/20190501173602%21Great_Wall_of_China_Mutianyu.jpg"
-},
-
-{
-name:"Taj Mahal",
-img:"https://upload.wikimedia.org/wikipedia/commons/d/da/Taj-Mahal.jpg"
-}
-
-]
-
-let currentPlace
-
-const goal = document.getElementById("goal")
-
-for(let i=0;i<9;i++){
-
-let cell = document.createElement("div")
-cell.classList.add("cell")
-
-cell.onclick = () => shoot(i)
-
-goal.appendChild(cell)
-
-}
-
-function newTarget(){
-
-let cells = document.querySelectorAll(".cell")
-
-cells.forEach(c => c.classList.remove("target"))
-
-targetIndex = Math.floor(Math.random()*9)
-
-cells[targetIndex].classList.add("target")
-
-}
-
-function shoot(i){
-
-if(i === targetIndex){
-
-startQuiz()
-
-}
-
-}
-
-function startQuiz(){
-
-currentPlace = places[Math.floor(Math.random()*places.length)]
-
-document.getElementById("quiz").style.display = "block"
-
-document.getElementById("placeImg").src = currentPlace.img
-
-}
-
-function checkAnswer(){
-
-let ans = document.getElementById("answer").value.toLowerCase()
-
-if(ans.includes(currentPlace.name.toLowerCase())){
-
-score += 10
-alert("ถูกต้อง +10")
-
-}else{
-
-alert("ผิด!")
-
-}
-
-document.getElementById("score").innerText = score
-
-document.getElementById("quiz").style.display = "none"
-
-document.getElementById("answer").value = ""
-
-newTarget()
-
-}
-
-newTarget()
-</script>
 
 </body>
 </html>
-
