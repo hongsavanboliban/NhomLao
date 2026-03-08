@@ -17,22 +17,63 @@
 <!-- TOP DESTINATIONS -->
 <section id="top-sites">
   <h2>Top Điểm Đến Phải Đi</h2>
-  <div class="grid">
-    <div class="card">
-      <img src="https://media.gettyimages.com/id/939742052/photo/luang-prabang-temple-in-the-heart-of-the-city.jpg?s=612x612&w=0&k=20&c=QAYxehnVn4A5RzyPO0WabntlEARFaA7vmK3xvERHP_Y=">
-      <h3>Luang Prabang</h3>
-      <p>Luang Prabang cổ kính hài hòa giữa văn hóa Phật giáo, kiến trúc Pháp cổ điển và cảnh quan thiên nhiên tuyệt đẹp. Nơi đây từng là cố đô của Vương quốc Lane Xang và đã được UNESCO công nhận là Di sản Thế giới từ năm 1995. Du lịch Luang Prabang nổi bật với nhiều điểm tham quan tiêu biểu. Chùa Wat Xieng Thong hay Wat Mai thu hút du khách bởi nghệ thuật chạm khắc và trang trí. Buổi sớm, khung cảnh các nhà sư khất thực trong sắc áo cà sa cam là trải nghiệm văn hóa độc đáo.</p>
+  <input type="text" id="searchInput" placeholder="Tìm địa điểm...">
+<button onclick="searchPlace()">Tìm</button>
+  <div class="slider-container">
+
+    <button class="slide-btn left" onclick="slideLeft()">❮</button>
+
+    <div class="slider" id="slider">
+
+        <div class="card">
+            <img src="https://media.gettyimages.com/id/939742052/photo/luang-prabang-temple-in-the-heart-of-the-city.jpg?s=612x612&w=0&k=20&c=QAYxehnVn4A5RzyPO0WabntlEARFaA7vmK3xvERHP_Y=">
+            <p>Luang Prabang</p>
+        </div>
+
+        <div class="card">
+            <img src="https://res.klook.com/image/upload/w_750,h_469,c_fill,q_85/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/qmgtdjekctlyucr8itqw.jpg">
+            <p>Ha Long Bay</p>
+        </div>
+
+        <div class="card">
+            <img src="img/hoi-an.jpg">
+            <p>Hoi An</p>
+        </div>
+
+        <div class="card">
+            <img src="img/hanoi.jpg">
+            <p>Ha Noi</p>
+        </div>
+
     </div>
-    <div class="card">
-      <img src="https://res.klook.com/image/upload/w_750,h_469,c_fill,q_85/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/qmgtdjekctlyucr8itqw.jpg" alt="Ha Long Bay">
-      <h3>Ha Long Bay</h3>
-      <p>Du lịch Vịnh Hạ Long (Quảng Ninh) là trải nghiệm di sản thiên nhiên thế giới nổi tiếng với hàng nghìn đảo đá vôi, hang động kỳ thú, du thuyền ngủ đêm, và các điểm check-in hấp dẫn như Sun Worldđảo Tuần Châu, bảo tàng Quảng Ninh. </p>
-    </div>
+
+    <button class="slide-btn right" onclick="slideRight()">❯</button>
+
+</div>
 </section>
+
+<script>
+function slideLeft(){
+    document.getElementById("slider").scrollBy({
+        left: -320,
+        behavior: "smooth"
+    });
+}
+
+function slideRight(){
+    document.getElementById("slider").scrollBy({
+        left: 320,
+        behavior: "smooth"
+    });
+}
+</script>
+
+
+</body>
+
+
 
 <footer>
   <p>© 2026 Lào – Việt Nam Tourism</p>
 </footer>
-
-</body>
 </html>
