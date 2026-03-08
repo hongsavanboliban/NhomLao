@@ -31,7 +31,164 @@
 <p id="result"></p>
 
 </div>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Football Guess Place Game</title>
 
+<style>
+
+body{
+font-family:Arial;
+text-align:center;
+background:#2ecc71;
+}
+
+.goal{
+width:300px;
+margin:20px auto;
+display:grid;
+grid-template-columns:repeat(3,100px);
+gap:5px;
+}
+
+.cell{
+height:100px;
+background:white;
+border:2px solid black;
+cursor:pointer;
+}
+
+.target{
+background:red;
+}
+
+img{
+width:300px;
+margin-top:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>⚽ Football Guess Place</h1>
+<p>Score: <span id="score">0</span></p>
+
+<div class="goal" id="goal"></div>
+
+<div id="quiz" style="display:none">
+<h2>ทายว่าสถานที่นี้คืออะไร?</h2>
+<img id="placeImg">
+<br><br>
+<input id="answer" placeholder="พิมพ์คำตอบ">
+<button onclick="checkAnswer()">ตอบ</button>
+</div>
+
+<script>
+
+let score = 0
+let targetIndex
+
+const places = [
+
+{
+name:"Eiffel Tower",
+img:"https://upload.wikimedia.org/wikipedia/commons/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg"
+},
+
+{
+name:"Great Wall",
+img:"https://upload.wikimedia.org/wikipedia/commons/1/10/20190501173602%21Great_Wall_of_China_Mutianyu.jpg"
+},
+
+{
+name:"Taj Mahal",
+img:"https://upload.wikimedia.org/wikipedia/commons/d/da/Taj-Mahal.jpg"
+}
+
+]
+
+let currentPlace
+
+const goal=document.getElementById("goal")
+
+for(let i=0;i<9;i++){
+
+let cell=document.createElement("div")
+cell.classList.add("cell")
+
+cell.onclick=()=>shoot(i)
+
+goal.appendChild(cell)
+
+}
+
+function newTarget(){
+
+let cells=document.querySelectorAll(".cell")
+cells.forEach(c=>c.classList.remove("target"))
+
+targetIndex=Math.floor(Math.random()*9)
+
+cells[targetIndex].classList.add("target")
+
+}
+
+function shoot(i){
+
+if(i===targetIndex){
+
+startQuiz()
+
+}
+
+}
+
+function startQuiz(){
+
+currentPlace=places[Math.floor(Math.random()*places.length)]
+
+document.getElementById("quiz").style.display="block"
+
+document.getElementById("placeImg").src=currentPlace.img
+
+}
+
+function checkAnswer(){
+
+let ans=document.getElementById("answer").value.toLowerCase()
+
+if(ans.includes(currentPlace.name.toLowerCase())){
+
+score+=10
+alert("ถูกต้อง +10")
+
+}else{
+
+alert("ผิด!")
+
+}
+
+document.getElementById("score").innerText=score
+
+document.getElementById("quiz").style.display="none"
+
+document.getElementById("answer").value=""
+
+newTarget()
+
+}
+
+newTarget()
+
+</script>
+
+</body>
+</html>
 
 
 
@@ -60,4 +217,5 @@ document.getElementById("result").innerText="❌ Try again";
 
 </body>
 </html>
+
 
